@@ -1,0 +1,13 @@
+.rgp-icon {
+    width: 20px;
+    height: 20px;
+}
+
+.rgp-btn-icon {
+    cursor: pointer;
+    transition: transform 0.5s;
+}
+
+.rgp-btn-icon:hover {
+    transform: rotate(90deg);
+}

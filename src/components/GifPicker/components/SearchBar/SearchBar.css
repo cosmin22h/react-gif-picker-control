@@ -1,0 +1,14 @@
+.rgp-search-bar {
+    padding: 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.rgp-search-input {
+    width: 100%;
+    outline: none;
+    background: transparent;
+    border: none;
+}

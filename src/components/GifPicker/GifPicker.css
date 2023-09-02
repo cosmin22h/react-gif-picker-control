@@ -1,0 +1,15 @@
+.rgp * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.rgp-gif-picker {
+    min-width: 250px;
+    max-width: 500px;
+    border-radius: 5px;
+}
+
+.rgp-search-bar-container {
+    padding: 0.5rem;
+}

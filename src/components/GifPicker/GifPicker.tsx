@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 
 // models
 import { ColorPalette } from "./models/ColorPalette";
 import { Dimension } from "./models/Dimension";
 import { Gif } from "./models/Gif";
+import { TenorService } from "./services/TenorService";
 
 interface IGifPicker {
     tenorApiKey: string;
     onSelectGif: (gif: Gif) => void;
-    dimension?: Dimension;
     colors?: ColorPalette;
+    dimension?: Dimension;
+    limit?: number;
 }
 
 const GifPicker = (props: IGifPicker) => {
-    const { tenorApiKey, onSelectGif, dimension, colors } = props;
+    const {
+        tenorApiKey,
+        onSelectGif,
+        colors = new ColorPalette(),
+        dimension = new Dimension(),
+        limit = 50,
+    } = props;
+    const [tenorService] = useState<TenorService>(
+        new TenorService(tenorApiKey)
+    );
 
     return (
         <>

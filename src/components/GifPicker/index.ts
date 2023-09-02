@@ -1,1 +1,1 @@
-export { default } from './GifPicker'
+export { default } from "./GifPicker";

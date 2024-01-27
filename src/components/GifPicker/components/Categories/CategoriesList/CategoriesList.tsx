@@ -61,7 +61,13 @@ export const CategoriesList: FunctionComponent<ICategoriesList> = ({
         );
 
         const width = Math.min(dimension.width, window.innerWidth);
-        const gridColumns = width < 450 ? 2 : 3;
+        let gridColumns = 3;
+
+        if (width < 250) {
+            gridColumns = 1;
+        } else if (width < 450) {
+            gridColumns = 2;
+        }
 
         categoryListRef.current.style.setProperty(
             "--no-columns",

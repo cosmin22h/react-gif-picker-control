@@ -14,7 +14,7 @@ type Story = StoryObj<typeof GifPicker>;
 
 // props
 const handleSelectedGif = (selectedGif: Gif) => {
-    alert(`GIF selected: (${selectedGif.id})`);
+    alert(`GIF selected: (${selectedGif.description})`);
 };
 
 export const Dev: Story = {
@@ -22,6 +22,26 @@ export const Dev: Story = {
         <GifPicker
             tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
             onSelectGif={handleSelectedGif}
+        />
+    ),
+};
+
+export const SmallDimension: Story = {
+    render: () => (
+        <GifPicker
+            tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
+            onSelectGif={handleSelectedGif}
+            dimension={{ width: 10, height: 250 }}
+        />
+    ),
+};
+
+export const BigerDimension: Story = {
+    render: () => (
+        <GifPicker
+            tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
+            onSelectGif={handleSelectedGif}
+            dimension={{ width: 550, height: 450 }}
         />
     ),
 };

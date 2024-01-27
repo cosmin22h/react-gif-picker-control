@@ -16,7 +16,7 @@ interface TenorGifMedia {
 
 interface TenorGif {
     id: string;
-    description: string;
+    content_description: string;
     media: TenorGifMedia[];
 }
 
@@ -83,7 +83,7 @@ export class TenorService implements ITenorService {
                     (gif: TenorGif) =>
                         new Gif(
                             gif.id,
-                            gif.description,
+                            gif.content_description,
                             gif.media[0]["gif"].url
                         )
                 )

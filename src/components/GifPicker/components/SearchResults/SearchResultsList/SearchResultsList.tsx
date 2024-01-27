@@ -53,7 +53,10 @@ export const SearchResultsList: FunctionComponent<ISearchResultsList> = ({
         let gridColumns = 4;
         let gridColumnFooter = 5;
 
-        if (width < 400) {
+        if (width < 250) {
+            gridColumns = 1;
+            gridColumnFooter = 2;
+        } else if (width < 400) {
             gridColumns = 2;
             gridColumnFooter = 3;
         } else if (width < 490) {

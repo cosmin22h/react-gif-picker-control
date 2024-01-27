@@ -52,7 +52,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     gifErrorUrl = defaultGifErrorUrl,
     gifNoResultsUrl = defaultNoResultsGifUrl,
 }) => {
-    if (tenorApiKey || !onSelectGif) {
+    if (!tenorApiKey || !onSelectGif) {
         return (
             <div
                 style={{
@@ -71,10 +71,18 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     const [debouncedSearchTerm, setDobouncedSearchTerm] = useState<string>("");
 
     useEffect(() => {
+        if (dimension.width < 150) {
+            dimension.width = 150;
+        }
+
+        if (dimension.width > 500) {
+            dimension.width = 500;
+        }
+
         setGifPickerContext({
             tenorAPI: new TenorService(tenorApiKey),
             colors,
-            dimension,
+            dimension: dimension,
             searchLimit: limit,
             gifErrorUrl,
             gifNoResultsUrl,

@@ -13,9 +13,16 @@ import { Gif } from "../../../models/Gif";
 interface IGifCard {
     gif: Gif;
     onSelectGif: (gif: Gif) => void;
+    gifsLoaded: boolean;
+    onLoadedGif: () => void;
 }
 
-export const GifCard: FunctionComponent<IGifCard> = ({ gif, onSelectGif }) => {
+export const GifCard: FunctionComponent<IGifCard> = ({
+    gif,
+    onSelectGif,
+    gifsLoaded,
+    onLoadedGif,
+}) => {
     const gifCardRef = useRef<HTMLDivElement>(null);
     const imageRef = useRef<HTMLImageElement>(null);
 
@@ -71,19 +78,23 @@ export const GifCard: FunctionComponent<IGifCard> = ({ gif, onSelectGif }) => {
         <div
             ref={gifCardRef}
             className="rgp-gif-card"
-            style={{ gridRowEnd: `span ${spans}` }}
+            style={{
+                cursor: gifsLoaded ? "pointer" : "default",
+                gridRowEnd: `span ${spans}`,
+            }}
             onClick={handleOnClick}
         >
             <img
                 ref={imageRef}
                 className="rgp-gif-image"
                 src={gif.urlMedia}
-                title={gif.description}
-                alt={gif.description}
-                loading="lazy"
+                title={gifsLoaded ? gif.description : ""}
+                alt={gifsLoaded ? gif.description : ""}
                 onLoad={() => {
                     getSpans();
+                    onLoadedGif();
                 }}
+                style={{ opacity: gifsLoaded ? 1 : 0 }}
             />
         </div>
     );

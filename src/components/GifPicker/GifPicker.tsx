@@ -38,7 +38,7 @@ interface IGifPicker {
     onSelectGif: (gif: Gif) => void;
     colors?: ColorPalette;
     dimension?: Dimension;
-    limit?: number;
+    searchLimit?: number;
     gifErrorUrl?: string;
     gifNoResultsUrl?: string;
 }
@@ -48,7 +48,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     onSelectGif,
     colors = new ColorPalette(),
     dimension = new Dimension(),
-    limit = searchLimit,
+    searchLimit = 50,
     gifErrorUrl = defaultGifErrorUrl,
     gifNoResultsUrl = defaultNoResultsGifUrl,
 }) => {
@@ -83,7 +83,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
             tenorAPI: new TenorService(tenorApiKey),
             colors,
             dimension: dimension,
-            searchLimit: limit,
+            searchLimit,
             gifErrorUrl,
             gifNoResultsUrl,
         });

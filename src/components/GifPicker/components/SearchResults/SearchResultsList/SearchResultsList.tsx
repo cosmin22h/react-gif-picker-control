@@ -33,17 +33,22 @@ export const SearchResultsList: FunctionComponent<ISearchResultsList> = ({
 }) => {
     const resultsListRef = useRef<HTMLDivElement>(null);
 
-    const { tenorAPI, colors, dimension } = useContext(GifPickerContext);
+    const { tenorAPI, colors, dimension, searchLimit } =
+        useContext(GifPickerContext);
 
     const [searchGifResults, setSearchGifResults] = useState<Gif[]>([]);
+    const [noGifsLoaded, setNoGifsLoaded] = useState<number>(0);
     const [searchSuggestions, setSearchSuggestions] = useState<string[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [isError, setIsError] = useState<boolean>(false);
+
+    const gifsLoaded = !isLoading && noGifsLoaded === searchGifResults.length;
 
     useEffect(() => {
         if (isLoading || !resultsListRef.current) {
             return;
         }
+
         resultsListRef.current.style.setProperty(
             "--scrollbar-color",
             colors.accent
@@ -75,12 +80,26 @@ export const SearchResultsList: FunctionComponent<ISearchResultsList> = ({
     }, [isLoading]);
 
     useEffect(() => {
+        if (isLoading || !resultsListRef.current) {
+            return;
+        }
+
+        if (gifsLoaded) {
+            resultsListRef.current.style.setProperty("--overflow-y", "auto");
+
+            return;
+        }
+
+        resultsListRef.current.style.setProperty("--overflow-y", "hidden");
+    }, [gifsLoaded]);
+
+    useEffect(() => {
         const getResults = async (term: string) => {
             try {
                 setIsLoading(true);
 
                 const [rResults, rSearchSuggestions] = await Promise.all([
-                    tenorAPI.search(term),
+                    tenorAPI.search(term, searchLimit),
                     tenorAPI.getSearchSuggestion(term),
                 ]);
 
@@ -102,6 +121,7 @@ export const SearchResultsList: FunctionComponent<ISearchResultsList> = ({
             }
         };
 
+        setNoGifsLoaded(0);
         getResults(searchTerm);
 
         const timer = setTimeout(() => {
@@ -129,13 +149,19 @@ export const SearchResultsList: FunctionComponent<ISearchResultsList> = ({
         onSelectGif(selectedGif);
     };
 
+    const handleOnLoadedGif = () => {
+        setNoGifsLoaded((prevNoGifsLoaded) => prevNoGifsLoaded + 1);
+    };
+
     const renderGifResults = () => {
         return searchGifResults.map((gif) => {
             return (
                 <GifCard
                     key={gif.id}
                     gif={gif}
+                    gifsLoaded={gifsLoaded}
                     onSelectGif={handleOnSelectGif}
+                    onLoadedGif={handleOnLoadedGif}
                 />
             );
         });
@@ -153,18 +179,23 @@ export const SearchResultsList: FunctionComponent<ISearchResultsList> = ({
         }
 
         return (
-            <div className="rgp-search-results-container">
-                {renderGifResults()}
-                <div className="rgp-footer">
-                    <h4
-                        className="rgp-footer-message"
-                        style={{ color: colors.accent }}
-                    >
-                        {suggestionsMessage}
-                    </h4>
-                    <div className="rgp-tags">{renderTags()}</div>
+            <>
+                {!gifsLoaded && <Loader />}
+                <div className="rgp-search-results-container">
+                    {renderGifResults()}
+                    {gifsLoaded && (
+                        <div className="rgp-footer">
+                            <h4
+                                className="rgp-footer-message"
+                                style={{ color: colors.accent }}
+                            >
+                                {suggestionsMessage}
+                            </h4>
+                            <div className="rgp-tags">{renderTags()}</div>
+                        </div>
+                    )}
                 </div>
-            </div>
+            </>
         );
     };
 

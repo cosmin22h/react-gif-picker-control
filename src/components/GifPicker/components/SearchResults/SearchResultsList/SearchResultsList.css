@@ -2,8 +2,9 @@
     --scrollbar-color: #fff;
     --no-columns: 4;
     --grid-column-footer: 5;
+    --overflow-y: hidden;
     width: 100%;
-    overflow-y: auto;
+    overflow-y: var(--overflow-y);
     overflow-x: hidden;
 }
 

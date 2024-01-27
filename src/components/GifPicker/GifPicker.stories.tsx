@@ -22,6 +22,7 @@ export const Dev: Story = {
         <GifPicker
             tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
             onSelectGif={handleSelectedGif}
+            searchLimit={10}
         />
     ),
 };

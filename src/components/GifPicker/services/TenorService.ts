@@ -27,20 +27,31 @@ export class TenorService implements ITenorService {
             return request;
         });
     }
-    getCategories(): Promise<Category[]> {
-        return this.axiosTenor.get("/categories");
+
+    public getCategories(): Promise<Category[]> {
+        return this.axiosTenor
+            .get("/categories")
+            .then((response) =>
+                response.data.tags.map(
+                    (tag: { name: string; image: string }) =>
+                        new Category(tag.name.slice(1), tag.image)
+                )
+            );
     }
-    getTrendingSearchTerms(): Promise<string[]> {
+
+    public getTrendingSearchTerms(): Promise<string[]> {
         return this.axiosTenor.get("/trending_terms");
     }
-    getSearchSuggestion(term: string): Promise<string[]> {
+
+    public getSearchSuggestion(term: string): Promise<string[]> {
         return this.axiosTenor.get(`/search_suggestions`, {
             params: {
                 q: term,
             },
         });
     }
-    search(term: string, limit: number = 50): Promise<Gif[]> {
+
+    public search(term: string, limit: number = 50): Promise<Gif[]> {
         return this.axiosTenor.get("/search", {
             params: {
                 q: term,

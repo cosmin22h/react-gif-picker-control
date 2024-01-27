@@ -15,13 +15,19 @@ import {
 } from "./context/GifPickerContext";
 
 // components
-import { SearchBar } from "./components/SearchBar/SearchBar";
+import { SearchBar } from "./components/SearchBar";
 
 // models
 import { ColorPalette } from "./models/ColorPalette";
 import { Dimension } from "./models/Dimension";
 import { Gif } from "./models/Gif";
 import { TenorService } from "./services/TenorService";
+import { CategoriesList } from "./components/Categories/CategoriesList";
+
+// constants
+const searchLimit = 50;
+const defaultGifErrorUrl =
+    "https://media.tenor.com/OxvVRFnPZO8AAAAC/error-the-simpsons.gif";
 
 interface IGifPicker {
     tenorApiKey: string;
@@ -29,6 +35,7 @@ interface IGifPicker {
     colors?: ColorPalette;
     dimension?: Dimension;
     limit?: number;
+    gifErrorUrl?: string;
 }
 
 const GifPicker: FunctionComponent<IGifPicker> = ({
@@ -36,7 +43,8 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     onSelectGif,
     colors = new ColorPalette(),
     dimension = new Dimension(),
-    limit = 50,
+    limit = searchLimit,
+    gifErrorUrl = defaultGifErrorUrl,
 }) => {
     const [gifPickerContext, setGifPickerContext] = useState<IGifPickerContext>(
         gifPickerDefaultContext
@@ -50,6 +58,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
             colors,
             dimension,
             searchLimit: limit,
+            gifErrorUrl,
         });
     }, []);
 
@@ -84,7 +93,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
 
     const renderList = (): ReactElement => {
         if (debouncedSearchTerm.trim().length === 0) {
-            return <div>Categories</div>;
+            return <CategoriesList onSelectCategory={handleOnSelectTerm} />;
         }
 
         return <div>Search results</div>;
@@ -107,6 +116,18 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
                             onChange={handleOnChangeSearchTerm}
                             onClear={handleOnClearSearchTerm}
                         />
+                    </div>
+                    <div
+                        className="rgp-divider"
+                        style={{
+                            background: colors.accent,
+                        }}
+                    ></div>
+                    <div
+                        className="rgp-display-result-container"
+                        style={{ maxHeight: dimension.height }}
+                    >
+                        {renderList()}
                     </div>
                 </div>
             </div>

@@ -24,6 +24,7 @@ import { Gif } from "./models/Gif";
 import { TenorService } from "./services/TenorService";
 import { CategoriesList } from "./components/Categories/CategoriesList";
 import { SearchResultsList } from "./components/SearchResults/SearchResultsList";
+import { ErrorLayout } from "./components/core/ErrorLayout";
 
 // constants
 const searchLimit = 50;
@@ -51,6 +52,18 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     gifErrorUrl = defaultGifErrorUrl,
     gifNoResultsUrl = defaultNoResultsGifUrl,
 }) => {
+    if (tenorApiKey || !onSelectGif) {
+        return (
+            <div
+                style={{
+                    background: colors.primary,
+                }}
+            >
+                <ErrorLayout errorMessage="You need to provide the following props: tenorApiKey and onSelectedGif" />
+            </div>
+        );
+    }
+
     const [gifPickerContext, setGifPickerContext] = useState<IGifPickerContext>(
         gifPickerDefaultContext
     );

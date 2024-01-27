@@ -5,20 +5,22 @@ import { Dimension } from "../models/Dimension";
 
 import { TenorService } from "../services/TenorService";
 
-export const GF_CONTEXT_DEFAULT_VALUE = {
-    tenorAPI: undefined,
+export const gifPickerDefaultContext = {
+    tenorAPI: new TenorService(""),
     colors: new ColorPalette(),
     dimension: new Dimension(),
     searchLimit: 0,
+    gifErrorUrl: "",
 };
 
 export interface IGifPickerContext {
-    tenorAPI: TenorService | undefined;
+    tenorAPI: TenorService;
     colors: ColorPalette;
     dimension: Dimension;
     searchLimit: number;
+    gifErrorUrl: string;
 }
 
 export const GifPickerContext = createContext<IGifPickerContext>(
-    GF_CONTEXT_DEFAULT_VALUE
+    gifPickerDefaultContext
 );

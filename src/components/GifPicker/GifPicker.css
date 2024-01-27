@@ -7,9 +7,18 @@
 .rgp-gif-picker {
     min-width: 250px;
     max-width: 500px;
-    border-radius: 5px;
 }
 
 .rgp-search-bar-container {
     padding: 0.5rem;
+}
+
+.rgp-divider {
+    min-height: 1px;
+}
+
+.rgp-display-result-container {
+    display: flex;
+    justify-content: center;
+    min-height: 150px;
 }

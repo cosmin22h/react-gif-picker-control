@@ -1,0 +1,23 @@
+.rgp-categories-list {
+    --scrollbar-color: #fff;
+    --no-columns: 3;
+
+    display: grid;
+    grid-template-columns: repeat(var(--no-columns), 1fr);
+    gap: 0.5rem;
+    width: 100%;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+.rgp-categories-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+.rgp-categories-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.rgp-categories-list::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-color);
+}

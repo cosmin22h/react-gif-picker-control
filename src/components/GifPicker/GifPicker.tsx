@@ -9,7 +9,7 @@ import React, {
 
 // context
 import {
-    GF_CONTEXT_DEFAULT_VALUE,
+    gifPickerDefaultContext,
     GifPickerContext,
     IGifPickerContext,
 } from "./context/GifPickerContext";
@@ -39,7 +39,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     limit = 50,
 }) => {
     const [gifPickerContext, setGifPickerContext] = useState<IGifPickerContext>(
-        GF_CONTEXT_DEFAULT_VALUE
+        gifPickerDefaultContext
     );
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [debouncedSearchTerm, setDobouncedSearchTerm] = useState<string>("");

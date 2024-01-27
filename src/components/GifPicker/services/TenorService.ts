@@ -5,6 +5,21 @@ import { Gif } from "../models/Gif";
 
 const baseUrl = "https://g.tenor.com/v1";
 
+interface TenorTag {
+    name: string;
+    image: string;
+}
+
+interface TenorGifMedia {
+    [x: string]: { url: string };
+}
+
+interface TenorGif {
+    id: string;
+    description: string;
+    media: TenorGifMedia[];
+}
+
 interface ITenorService {
     getCategories(): Promise<Category[]>;
     getTrendingSearchTerms(): Promise<string[]>;
@@ -33,30 +48,45 @@ export class TenorService implements ITenorService {
             .get("/categories")
             .then((response) =>
                 response.data.tags.map(
-                    (tag: { name: string; image: string }) =>
+                    (tag: TenorTag) =>
                         new Category(tag.name.slice(1), tag.image)
                 )
             );
     }
 
     public getTrendingSearchTerms(): Promise<string[]> {
-        return this.axiosTenor.get("/trending_terms");
+        return this.axiosTenor
+            .get("/trending_terms")
+            .then((response) => response.data.results);
     }
 
     public getSearchSuggestion(term: string): Promise<string[]> {
-        return this.axiosTenor.get(`/search_suggestions`, {
-            params: {
-                q: term,
-            },
-        });
+        return this.axiosTenor
+            .get(`/search_suggestions`, {
+                params: {
+                    q: term,
+                },
+            })
+            .then((response) => response.data.results);
     }
 
     public search(term: string, limit: number = 50): Promise<Gif[]> {
-        return this.axiosTenor.get("/search", {
-            params: {
-                q: term,
-                limit: limit,
-            },
-        });
+        return this.axiosTenor
+            .get("/search", {
+                params: {
+                    q: term,
+                    limit: limit,
+                },
+            })
+            .then((response) =>
+                response.data.results.map(
+                    (gif: TenorGif) =>
+                        new Gif(
+                            gif.id,
+                            gif.description,
+                            gif.media[0]["gif"].url
+                        )
+                )
+            );
     }
 }

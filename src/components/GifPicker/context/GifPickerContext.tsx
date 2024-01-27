@@ -11,6 +11,7 @@ export const gifPickerDefaultContext = {
     dimension: new Dimension(),
     searchLimit: 0,
     gifErrorUrl: "",
+    gifNoResultsUrl: "",
 };
 
 export interface IGifPickerContext {
@@ -19,6 +20,7 @@ export interface IGifPickerContext {
     dimension: Dimension;
     searchLimit: number;
     gifErrorUrl: string;
+    gifNoResultsUrl: string;
 }
 
 export const GifPickerContext = createContext<IGifPickerContext>(

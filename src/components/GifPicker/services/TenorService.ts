@@ -3,7 +3,7 @@ import axios, { AxiosInstance } from "axios";
 import { Category } from "../models/Category";
 import { Gif } from "../models/Gif";
 
-const DEFAULT_URL = "https://g.tenor.com/v1";
+const baseUrl = "https://g.tenor.com/v1";
 
 interface ITenorService {
     getCategories(): Promise<Category[]>;
@@ -17,7 +17,7 @@ export class TenorService implements ITenorService {
 
     constructor(tenorApiKey: string) {
         this.axiosTenor = axios.create({
-            baseURL: `${DEFAULT_URL}`,
+            baseURL: `${baseUrl}`,
         });
         this.axiosTenor.interceptors.request.use((request) => {
             const params = { ...request.params, key: tenorApiKey };

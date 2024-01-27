@@ -51,20 +51,22 @@ export const CategoriesList: FunctionComponent<ICategoriesList> = ({
     }, []);
 
     useEffect(() => {
-        if (!isLoading && categoryListRef.current) {
-            categoryListRef.current.style.setProperty(
-                "--scrollbar-color",
-                colors.accent
-            );
-
-            const width = Math.min(dimension.width, window.innerWidth);
-            const gridColumns = width < 450 ? 2 : 3;
-
-            categoryListRef.current.style.setProperty(
-                "--no-columns",
-                gridColumns.toString()
-            );
+        if (isLoading || !categoryListRef.current) {
+            return;
         }
+
+        categoryListRef.current.style.setProperty(
+            "--scrollbar-color",
+            colors.accent
+        );
+
+        const width = Math.min(dimension.width, window.innerWidth);
+        const gridColumns = width < 450 ? 2 : 3;
+
+        categoryListRef.current.style.setProperty(
+            "--no-columns",
+            gridColumns.toString()
+        );
     }, [isLoading]);
 
     const handleOnSelectCategory = (category: Category) => {

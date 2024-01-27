@@ -1,6 +1,7 @@
-import { GifPickerContext } from "../../../context/GifPickerContext";
 import "./Loader.css";
 import React, { FunctionComponent, useContext } from "react";
+
+import { GifPickerContext } from "../../../context/GifPickerContext";
 
 export const Loader: FunctionComponent = () => {
     const { colors } = useContext(GifPickerContext);

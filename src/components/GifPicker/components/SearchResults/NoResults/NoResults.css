@@ -1,0 +1,17 @@
+.rgp-no-results-layout {
+    --width-media: 300px;
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+}
+
+.rgp-no-results-layout .rgp-media-content {
+    width: var(--width-media);
+}
+
+.rgp-no-results-layout .rgp-footer {
+    text-align: center;
+}

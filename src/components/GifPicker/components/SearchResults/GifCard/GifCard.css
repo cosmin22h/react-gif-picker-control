@@ -1,0 +1,17 @@
+.rgp-gif-card {
+    --accent-color: transparent;
+    --bg-color: transparent;
+    --width-image: 110px;
+    cursor: pointer;
+}
+
+.rgp-gif-card .rgp-gif-image {
+    width: var(--width-image);
+    padding: 0;
+    border-radius: 5px;
+    border: 2px var(--bg-color) solid;
+}
+
+.rgp-gif-card .rgp-gif-image:hover {
+    border: 2px var(--accent-color) solid;
+}

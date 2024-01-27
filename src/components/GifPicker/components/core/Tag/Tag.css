@@ -1,0 +1,13 @@
+.rgp-tag {
+    --accent-color: transparent;
+    --bg-color: transparent;
+    padding: 0.2rem 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background: var(--bg-color);
+    transition: background 0.5s;
+}
+
+.rgp-tag:hover {
+    background: var(--accent-color);
+}

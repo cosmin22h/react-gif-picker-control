@@ -19,13 +19,15 @@ export const ErrorLayout: FunctionComponent<IErrorLayout> = ({
             <h4 className="rgp-error-header" style={{ color: colors.accent }}>
                 {errorMessage}
             </h4>
-            <img
-                className="rgp-error-media-content"
-                src={gifErrorUrl}
-                alt={errorMessage}
-                title="Error"
-                loading="lazy"
-            />
+            {gifErrorUrl.length > 0 && (
+                <img
+                    className="rgp-error-media-content"
+                    src={gifErrorUrl}
+                    alt={errorMessage}
+                    title="Error"
+                    loading="lazy"
+                />
+            )}
         </div>
     );
 };

@@ -23,11 +23,15 @@ import { Dimension } from "./models/Dimension";
 import { Gif } from "./models/Gif";
 import { TenorService } from "./services/TenorService";
 import { CategoriesList } from "./components/Categories/CategoriesList";
+import { SearchResultsList } from "./components/SearchResults/SearchResultsList";
+import { ErrorLayout } from "./components/core/ErrorLayout";
 
 // constants
 const searchLimit = 50;
 const defaultGifErrorUrl =
     "https://media.tenor.com/OxvVRFnPZO8AAAAC/error-the-simpsons.gif";
+const defaultNoResultsGifUrl =
+    "https://media.tenor.com/jJHoqBHOqVkAAAAC/animated-cartoon.gif";
 
 interface IGifPicker {
     tenorApiKey: string;
@@ -36,6 +40,7 @@ interface IGifPicker {
     dimension?: Dimension;
     limit?: number;
     gifErrorUrl?: string;
+    gifNoResultsUrl?: string;
 }
 
 const GifPicker: FunctionComponent<IGifPicker> = ({
@@ -45,7 +50,20 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     dimension = new Dimension(),
     limit = searchLimit,
     gifErrorUrl = defaultGifErrorUrl,
+    gifNoResultsUrl = defaultNoResultsGifUrl,
 }) => {
+    if (tenorApiKey || !onSelectGif) {
+        return (
+            <div
+                style={{
+                    background: colors.primary,
+                }}
+            >
+                <ErrorLayout errorMessage="You need to provide the following props: tenorApiKey and onSelectedGif" />
+            </div>
+        );
+    }
+
     const [gifPickerContext, setGifPickerContext] = useState<IGifPickerContext>(
         gifPickerDefaultContext
     );
@@ -59,6 +77,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
             dimension,
             searchLimit: limit,
             gifErrorUrl,
+            gifNoResultsUrl,
         });
     }, []);
 
@@ -96,7 +115,13 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
             return <CategoriesList onSelectCategory={handleOnSelectTerm} />;
         }
 
-        return <div>Search results</div>;
+        return (
+            <SearchResultsList
+                searchTerm={debouncedSearchTerm}
+                onSelectTag={handleOnSelectTerm}
+                onSelectGif={handleOnSelectGif}
+            />
+        );
     };
 
     return (

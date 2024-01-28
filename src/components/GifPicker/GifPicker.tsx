@@ -26,7 +26,7 @@ import { CategoriesList } from "./components/Categories/CategoriesList";
 import { SearchResultsList } from "./components/SearchResults/SearchResultsList";
 import { ErrorLayout } from "./components/core/ErrorLayout";
 
-// TODO: see props name, cards loader, remove axios
+// TODO:  cards loader, remove axios
 
 // constants
 const defaultSearchLimit = 50;
@@ -37,9 +37,9 @@ const defaultNoResultsGifUrl =
 
 interface IGifPicker {
     tenorApiKey: string;
-    onSelectGif: (gif: Gif) => void;
+    onClick: (gif: Gif) => void;
     colors?: ColorPalette;
-    dimension?: Dimension;
+    containerDimensions?: Dimension;
     searchLimit?: number;
     gifErrorUrl?: string;
     gifNoResultsUrl?: string;
@@ -47,14 +47,14 @@ interface IGifPicker {
 
 const GifPicker: FunctionComponent<IGifPicker> = ({
     tenorApiKey,
-    onSelectGif,
+    onClick,
     colors = new ColorPalette(),
-    dimension = new Dimension(),
+    containerDimensions: dimension = new Dimension(),
     searchLimit = defaultSearchLimit,
     gifErrorUrl = defaultGifErrorUrl,
     gifNoResultsUrl = defaultNoResultsGifUrl,
 }) => {
-    if (!tenorApiKey || !onSelectGif) {
+    if (!tenorApiKey || !onClick) {
         return (
             <div
                 style={{
@@ -117,7 +117,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
 
     const handleOnSelectGif = (selectedGif: Gif) => {
         handleOnClearSearchTerm();
-        onSelectGif(selectedGif);
+        onClick(selectedGif);
     };
 
     const renderList = (): ReactElement => {

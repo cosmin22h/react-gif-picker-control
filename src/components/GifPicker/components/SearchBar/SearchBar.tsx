@@ -16,7 +16,7 @@ export const SearchBar: FunctionComponent<ISearchBar> = ({
     onChange,
     onClear,
 }) => {
-    const { colors, dimension } = useContext(GifPickerContext);
+    const { colors } = useContext(GifPickerContext);
 
     const handleOnChangeInput = (event: ChangeEvent<HTMLInputElement>) => {
         event.preventDefault();

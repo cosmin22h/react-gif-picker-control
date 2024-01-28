@@ -1,5 +1,3 @@
-import axios, { AxiosInstance } from "axios";
-
 import { Category } from "../models/Category";
 import { Gif } from "../models/Gif";
 
@@ -13,57 +11,75 @@ interface ITenorService {
 }
 
 export class TenorService implements ITenorService {
-    private axiosTenor: AxiosInstance;
+    private tenorApiKey: string;
 
     constructor(tenorApiKey: string) {
-        this.axiosTenor = axios.create({
-            baseURL: `${baseUrl}`,
-        });
-        this.axiosTenor.interceptors.request.use((request) => {
-            const params = { ...request.params, key: tenorApiKey };
-
-            request.params = params;
-
-            return request;
-        });
+        this.tenorApiKey = tenorApiKey;
     }
 
     public getCategories(): Promise<Category[]> {
-        return this.axiosTenor
-            .get("/categories")
-            .then((response) =>
-                response.data.tags.map(
+        return fetch(`${baseUrl}/categories?key=${this.tenorApiKey}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(
+                        `[${response.status}]  ${response.statusText}`
+                    );
+                }
+
+                return response.json();
+            })
+            .then((data) =>
+                data.tags.map(
                     (tag) => new Category(tag.name.slice(1), tag.image)
                 )
             );
     }
 
     public getTrendingSearchTerms(): Promise<string[]> {
-        return this.axiosTenor
-            .get("/trending_terms")
-            .then((response) => response.data.results);
+        return fetch(`${baseUrl}/trending_terms?key=${this.tenorApiKey}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(
+                        `[${response.status}]  ${response.statusText}`
+                    );
+                }
+
+                return response.json();
+            })
+            .then((data) => data.results);
     }
 
     public getSearchSuggestion(term: string): Promise<string[]> {
-        return this.axiosTenor
-            .get(`/search_suggestions`, {
-                params: {
-                    q: term,
-                },
+        return fetch(
+            `${baseUrl}/search_suggestions?q=${term}&key=${this.tenorApiKey}`
+        )
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(
+                        `[${response.status}]  ${response.statusText}`
+                    );
+                }
+
+                return response.json();
             })
-            .then((response) => response.data.results);
+            .then((data) => data.results);
     }
 
     public search(term: string, limit: number = 50): Promise<Gif[]> {
-        return this.axiosTenor
-            .get("/search", {
-                params: {
-                    q: term,
-                    limit: limit,
-                },
+        return fetch(
+            `${baseUrl}/search?q=${term}&limit=${limit}&key=${this.tenorApiKey}`
+        )
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(
+                        `[${response.status}]  ${response.statusText}`
+                    );
+                }
+
+                return response.json();
             })
-            .then((response) =>
-                response.data.results.map((gif) => {
+            .then((data) =>
+                data.results.map((gif) => {
                     const gifMedia = gif.media[0]["gif"];
 
                     return new Gif(

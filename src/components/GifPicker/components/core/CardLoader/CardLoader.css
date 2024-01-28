@@ -1,0 +1,17 @@
+.rgp-card-loader {
+    background: white;
+    opacity: 0.3;
+    border-radius: 5px;
+    display: inline-block;
+    width: 100%;
+    animation: opacityChange 1s infinite alternate;
+}
+
+@keyframes opacityChange {
+    0% {
+        opacity: 0.1;
+    }
+    100% {
+        opacity: 0.4;
+    }
+}

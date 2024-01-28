@@ -138,7 +138,7 @@ export const SearchResultsList: FunctionComponent<ISearchResultsList> = ({
     }, [searchTerm]);
 
     if (isLoading) {
-        return <Loader />;
+        return <Loader type={1} />;
     }
 
     if (isError) {
@@ -180,7 +180,7 @@ export const SearchResultsList: FunctionComponent<ISearchResultsList> = ({
 
         return (
             <>
-                {!gifsLoaded && <Loader />}
+                {!gifsLoaded && <Loader type={1} />}
                 <div className="rgp-search-results-container">
                     {renderGifResults()}
                     {gifsLoaded && (

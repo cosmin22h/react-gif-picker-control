@@ -27,7 +27,7 @@ import { SearchResultsList } from "./components/SearchResults/SearchResultsList"
 import { ErrorLayout } from "./components/core/ErrorLayout";
 
 // constants
-const searchLimit = 50;
+const defaultSearchLimit = 50;
 const defaultGifErrorUrl =
     "https://media.tenor.com/OxvVRFnPZO8AAAAC/error-the-simpsons.gif";
 const defaultNoResultsGifUrl =
@@ -35,24 +35,28 @@ const defaultNoResultsGifUrl =
 
 interface IGifPicker {
     tenorApiKey: string;
-    onSelectGif: (gif: Gif) => void;
+    onClick: (gif: Gif) => void;
     colors?: ColorPalette;
-    dimension?: Dimension;
+    containerDimensions?: Dimension;
     searchLimit?: number;
     gifErrorUrl?: string;
     gifNoResultsUrl?: string;
+    hideCategories?: boolean;
+    autoFocus?: boolean;
 }
 
 const GifPicker: FunctionComponent<IGifPicker> = ({
     tenorApiKey,
-    onSelectGif,
+    onClick,
     colors = new ColorPalette(),
-    dimension = new Dimension(),
-    searchLimit = 50,
+    containerDimensions: dimension = new Dimension(),
+    searchLimit = defaultSearchLimit,
     gifErrorUrl = defaultGifErrorUrl,
     gifNoResultsUrl = defaultNoResultsGifUrl,
+    hideCategories = false,
+    autoFocus = true,
 }) => {
-    if (!tenorApiKey || !onSelectGif) {
+    if (!tenorApiKey || !onClick) {
         return (
             <div
                 style={{
@@ -115,12 +119,16 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
 
     const handleOnSelectGif = (selectedGif: Gif) => {
         handleOnClearSearchTerm();
-        onSelectGif(selectedGif);
+        onClick(selectedGif);
     };
 
     const renderList = (): ReactElement => {
         if (debouncedSearchTerm.trim().length === 0) {
-            return <CategoriesList onSelectCategory={handleOnSelectTerm} />;
+            return (
+                !hideCategories && (
+                    <CategoriesList onSelectCategory={handleOnSelectTerm} />
+                )
+            );
         }
 
         return (
@@ -148,14 +156,18 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
                             term={searchTerm}
                             onChange={handleOnChangeSearchTerm}
                             onClear={handleOnClearSearchTerm}
+                            autoFocus={autoFocus}
                         />
                     </div>
-                    <div
-                        className="rgp-divider"
-                        style={{
-                            background: colors.accent,
-                        }}
-                    ></div>
+                    {(!hideCategories ||
+                        debouncedSearchTerm.trim().length > 0) && (
+                        <div
+                            className="rgp-divider"
+                            style={{
+                                background: colors.accent,
+                            }}
+                        ></div>
+                    )}
                     <div
                         className="rgp-display-result-container"
                         style={{ maxHeight: dimension.height }}

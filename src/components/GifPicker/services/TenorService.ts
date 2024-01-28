@@ -1,24 +1,7 @@
-import axios, { AxiosInstance } from "axios";
-
 import { Category } from "../models/Category";
 import { Gif } from "../models/Gif";
 
 const baseUrl = "https://g.tenor.com/v1";
-
-interface TenorTag {
-    name: string;
-    image: string;
-}
-
-interface TenorGifMedia {
-    [x: string]: { url: string };
-}
-
-interface TenorGif {
-    id: string;
-    content_description: string;
-    media: TenorGifMedia[];
-}
 
 interface ITenorService {
     getCategories(): Promise<Category[]>;
@@ -28,65 +11,87 @@ interface ITenorService {
 }
 
 export class TenorService implements ITenorService {
-    private axiosTenor: AxiosInstance;
+    private tenorApiKey: string;
 
     constructor(tenorApiKey: string) {
-        this.axiosTenor = axios.create({
-            baseURL: `${baseUrl}`,
-        });
-        this.axiosTenor.interceptors.request.use((request) => {
-            const params = { ...request.params, key: tenorApiKey };
-
-            request.params = params;
-
-            return request;
-        });
+        this.tenorApiKey = tenorApiKey;
     }
 
     public getCategories(): Promise<Category[]> {
-        return this.axiosTenor
-            .get("/categories")
-            .then((response) =>
-                response.data.tags.map(
-                    (tag: TenorTag) =>
-                        new Category(tag.name.slice(1), tag.image)
+        return fetch(`${baseUrl}/categories?key=${this.tenorApiKey}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(
+                        `[${response.status}]  ${response.statusText}`
+                    );
+                }
+
+                return response.json();
+            })
+            .then((data) =>
+                data.tags.map(
+                    (tag) => new Category(tag.name.slice(1), tag.image)
                 )
             );
     }
 
     public getTrendingSearchTerms(): Promise<string[]> {
-        return this.axiosTenor
-            .get("/trending_terms")
-            .then((response) => response.data.results);
+        return fetch(`${baseUrl}/trending_terms?key=${this.tenorApiKey}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(
+                        `[${response.status}]  ${response.statusText}`
+                    );
+                }
+
+                return response.json();
+            })
+            .then((data) => data.results);
     }
 
     public getSearchSuggestion(term: string): Promise<string[]> {
-        return this.axiosTenor
-            .get(`/search_suggestions`, {
-                params: {
-                    q: term,
-                },
+        return fetch(
+            `${baseUrl}/search_suggestions?q=${term}&key=${this.tenorApiKey}`
+        )
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(
+                        `[${response.status}]  ${response.statusText}`
+                    );
+                }
+
+                return response.json();
             })
-            .then((response) => response.data.results);
+            .then((data) => data.results);
     }
 
     public search(term: string, limit: number = 50): Promise<Gif[]> {
-        return this.axiosTenor
-            .get("/search", {
-                params: {
-                    q: term,
-                    limit: limit,
-                },
+        return fetch(
+            `${baseUrl}/search?q=${term}&limit=${limit}&key=${this.tenorApiKey}`
+        )
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(
+                        `[${response.status}]  ${response.statusText}`
+                    );
+                }
+
+                return response.json();
             })
-            .then((response) =>
-                response.data.results.map(
-                    (gif: TenorGif) =>
-                        new Gif(
-                            gif.id,
-                            gif.content_description,
-                            gif.media[0]["gif"].url
-                        )
-                )
+            .then((data) =>
+                data.results.map((gif) => {
+                    const gifMedia = gif.media[0]["gif"];
+
+                    return new Gif(
+                        gif.id,
+                        gif.content_description,
+                        gifMedia.preview,
+                        gifMedia.url,
+                        gifMedia.dims[0],
+                        gifMedia.dims[1],
+                        gif.created
+                    );
+                })
             );
     }
 }

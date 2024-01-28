@@ -50,6 +50,7 @@ export const CategoryCard: FunctionComponent<ICategoryCard> = ({
         <div
             ref={categoryCardRef}
             className="rgp-category-card"
+            title={category.name}
             onClick={handleOnSelectCategory}
             style={{ background: colors.primary }}
         >

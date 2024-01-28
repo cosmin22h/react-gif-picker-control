@@ -14,15 +14,14 @@ type Story = StoryObj<typeof GifPicker>;
 
 // props
 const handleSelectedGif = (selectedGif: Gif) => {
-    alert(`GIF selected: (${selectedGif.description})`);
+    console.log(selectedGif);
 };
 
 export const Dev: Story = {
     render: () => (
         <GifPicker
             tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
-            onSelectGif={handleSelectedGif}
-            searchLimit={10}
+            onClick={handleSelectedGif}
         />
     ),
 };
@@ -31,18 +30,39 @@ export const SmallDimension: Story = {
     render: () => (
         <GifPicker
             tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
-            onSelectGif={handleSelectedGif}
-            dimension={{ width: 10, height: 250 }}
+            onClick={handleSelectedGif}
+            containerDimensions={{ width: 10, height: 250 }}
         />
     ),
 };
 
-export const BigerDimension: Story = {
+export const MidDimension: Story = {
     render: () => (
         <GifPicker
             tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
-            onSelectGif={handleSelectedGif}
-            dimension={{ width: 550, height: 450 }}
+            onClick={handleSelectedGif}
+            containerDimensions={{ width: 450, height: 450 }}
+        />
+    ),
+};
+
+export const BigDimension: Story = {
+    render: () => (
+        <GifPicker
+            tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
+            onClick={handleSelectedGif}
+            containerDimensions={{ width: 700, height: 450 }}
+        />
+    ),
+};
+
+export const HideCategories: Story = {
+    render: () => (
+        <GifPicker
+            tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
+            onClick={handleSelectedGif}
+            containerDimensions={{ width: 350, height: 450 }}
+            hideCategories={true}
         />
     ),
 };

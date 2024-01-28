@@ -80,7 +80,7 @@ export const CategoriesList: FunctionComponent<ICategoriesList> = ({
     };
 
     if (isLoading) {
-        return <Loader />;
+        return <Loader type={0} />;
     }
 
     if (isError) {

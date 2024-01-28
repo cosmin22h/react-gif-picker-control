@@ -22,7 +22,6 @@ export const Dev: Story = {
         <GifPicker
             tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
             onClick={handleSelectedGif}
-            searchLimit={10}
         />
     ),
 };
@@ -37,12 +36,22 @@ export const SmallDimension: Story = {
     ),
 };
 
-export const BigerDimension: Story = {
+export const MidDimension: Story = {
     render: () => (
         <GifPicker
             tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
             onClick={handleSelectedGif}
-            containerDimensions={{ width: 550, height: 450 }}
+            containerDimensions={{ width: 450, height: 450 }}
+        />
+    ),
+};
+
+export const BigDimension: Story = {
+    render: () => (
+        <GifPicker
+            tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
+            onClick={handleSelectedGif}
+            containerDimensions={{ width: 700, height: 450 }}
         />
     ),
 };

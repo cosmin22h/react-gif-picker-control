@@ -26,7 +26,7 @@ import { CategoriesList } from "./components/Categories/CategoriesList";
 import { SearchResultsList } from "./components/SearchResults/SearchResultsList";
 import { ErrorLayout } from "./components/core/ErrorLayout";
 
-// TODO: title at category card, see props name, cards loader, remove axios
+// TODO: see props name, cards loader, remove axios
 
 // constants
 const defaultSearchLimit = 50;

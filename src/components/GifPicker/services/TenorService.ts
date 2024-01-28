@@ -5,21 +5,6 @@ import { Gif } from "../models/Gif";
 
 const baseUrl = "https://g.tenor.com/v1";
 
-interface TenorTag {
-    name: string;
-    image: string;
-}
-
-interface TenorGifMedia {
-    [x: string]: { url: string };
-}
-
-interface TenorGif {
-    id: string;
-    content_description: string;
-    media: TenorGifMedia[];
-}
-
 interface ITenorService {
     getCategories(): Promise<Category[]>;
     getTrendingSearchTerms(): Promise<string[]>;
@@ -48,8 +33,7 @@ export class TenorService implements ITenorService {
             .get("/categories")
             .then((response) =>
                 response.data.tags.map(
-                    (tag: TenorTag) =>
-                        new Category(tag.name.slice(1), tag.image)
+                    (tag) => new Category(tag.name.slice(1), tag.image)
                 )
             );
     }
@@ -79,14 +63,19 @@ export class TenorService implements ITenorService {
                 },
             })
             .then((response) =>
-                response.data.results.map(
-                    (gif: TenorGif) =>
-                        new Gif(
-                            gif.id,
-                            gif.content_description,
-                            gif.media[0]["gif"].url
-                        )
-                )
+                response.data.results.map((gif) => {
+                    const gifMedia = gif.media[0]["gif"];
+
+                    return new Gif(
+                        gif.id,
+                        gif.content_description,
+                        gifMedia.preview,
+                        gifMedia.url,
+                        gifMedia.dims[0],
+                        gifMedia.dims[1],
+                        gif.created
+                    );
+                })
             );
     }
 }

@@ -14,7 +14,7 @@ type Story = StoryObj<typeof GifPicker>;
 
 // props
 const handleSelectedGif = (selectedGif: Gif) => {
-    alert(`GIF selected: (${selectedGif.description})`);
+    console.log(selectedGif);
 };
 
 export const Dev: Story = {

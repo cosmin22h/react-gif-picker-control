@@ -26,8 +26,10 @@ import { CategoriesList } from "./components/Categories/CategoriesList";
 import { SearchResultsList } from "./components/SearchResults/SearchResultsList";
 import { ErrorLayout } from "./components/core/ErrorLayout";
 
+// TODO: title at category card, see props name, cards loader, remove axios
+
 // constants
-const searchLimit = 50;
+const defaultSearchLimit = 50;
 const defaultGifErrorUrl =
     "https://media.tenor.com/OxvVRFnPZO8AAAAC/error-the-simpsons.gif";
 const defaultNoResultsGifUrl =
@@ -48,7 +50,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     onSelectGif,
     colors = new ColorPalette(),
     dimension = new Dimension(),
-    searchLimit = 50,
+    searchLimit = defaultSearchLimit,
     gifErrorUrl = defaultGifErrorUrl,
     gifNoResultsUrl = defaultNoResultsGifUrl,
 }) => {

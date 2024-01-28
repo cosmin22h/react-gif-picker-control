@@ -1,9 +1,9 @@
 import React from "react";
 import type { Meta, StoryObj } from "@storybook/react";
 
-import GifPicker from "./GifPicker";
+import GifPicker from "../src/components/GifPicker/GifPicker";
 
-import { Gif } from "./models/Gif";
+import { Gif } from "../src/components/GifPicker/models/Gif";
 
 const meta: Meta<typeof GifPicker> = {
     component: GifPicker,

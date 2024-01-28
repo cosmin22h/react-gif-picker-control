@@ -71,7 +71,7 @@ export const NoResults: FunctionComponent<INoResults> = ({ onSelectTag }) => {
     }, []);
 
     if (isLoading) {
-        return <Loader />;
+        return <Loader type={1} />;
     }
 
     if (isError) {

@@ -55,7 +55,7 @@ export const Loader: FunctionComponent<ILoader> = ({ type }) => {
         );
 
         setNoColumns(gridColumns);
-    }, []);
+    }, [dimension]);
 
     const renderCardsLoader = () => {
         return Array.from(

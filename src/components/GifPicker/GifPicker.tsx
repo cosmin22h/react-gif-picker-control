@@ -26,8 +26,6 @@ import { CategoriesList } from "./components/Categories/CategoriesList";
 import { SearchResultsList } from "./components/SearchResults/SearchResultsList";
 import { ErrorLayout } from "./components/core/ErrorLayout";
 
-// TODO:  cards loader, remove axios
-
 // constants
 const defaultSearchLimit = 50;
 const defaultGifErrorUrl =
@@ -43,6 +41,7 @@ interface IGifPicker {
     searchLimit?: number;
     gifErrorUrl?: string;
     gifNoResultsUrl?: string;
+    hideCategories?: boolean;
 }
 
 const GifPicker: FunctionComponent<IGifPicker> = ({
@@ -53,6 +52,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     searchLimit = defaultSearchLimit,
     gifErrorUrl = defaultGifErrorUrl,
     gifNoResultsUrl = defaultNoResultsGifUrl,
+    hideCategories = false,
 }) => {
     if (!tenorApiKey || !onClick) {
         return (
@@ -122,7 +122,11 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
 
     const renderList = (): ReactElement => {
         if (debouncedSearchTerm.trim().length === 0) {
-            return <CategoriesList onSelectCategory={handleOnSelectTerm} />;
+            return (
+                !hideCategories && (
+                    <CategoriesList onSelectCategory={handleOnSelectTerm} />
+                )
+            );
         }
 
         return (
@@ -152,12 +156,15 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
                             onClear={handleOnClearSearchTerm}
                         />
                     </div>
-                    <div
-                        className="rgp-divider"
-                        style={{
-                            background: colors.accent,
-                        }}
-                    ></div>
+                    {!hideCategories ||
+                        (debouncedSearchTerm.trim().length > 0 && (
+                            <div
+                                className="rgp-divider"
+                                style={{
+                                    background: colors.accent,
+                                }}
+                            ></div>
+                        ))}
                     <div
                         className="rgp-display-result-container"
                         style={{ maxHeight: dimension.height }}

@@ -55,3 +55,14 @@ export const BigDimension: Story = {
         />
     ),
 };
+
+export const HideCategories: Story = {
+    render: () => (
+        <GifPicker
+            tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
+            onClick={handleSelectedGif}
+            containerDimensions={{ width: 700, height: 450 }}
+            hideCategories={true}
+        />
+    ),
+};

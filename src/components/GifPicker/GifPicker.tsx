@@ -42,6 +42,7 @@ interface IGifPicker {
     gifErrorUrl?: string;
     gifNoResultsUrl?: string;
     hideCategories?: boolean;
+    autoFocus?: boolean;
 }
 
 const GifPicker: FunctionComponent<IGifPicker> = ({
@@ -53,6 +54,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     gifErrorUrl = defaultGifErrorUrl,
     gifNoResultsUrl = defaultNoResultsGifUrl,
     hideCategories = false,
+    autoFocus = true,
 }) => {
     if (!tenorApiKey || !onClick) {
         return (
@@ -154,17 +156,18 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
                             term={searchTerm}
                             onChange={handleOnChangeSearchTerm}
                             onClear={handleOnClearSearchTerm}
+                            autoFocus={autoFocus}
                         />
                     </div>
-                    {!hideCategories ||
-                        (debouncedSearchTerm.trim().length > 0 && (
-                            <div
-                                className="rgp-divider"
-                                style={{
-                                    background: colors.accent,
-                                }}
-                            ></div>
-                        ))}
+                    {(!hideCategories ||
+                        debouncedSearchTerm.trim().length > 0) && (
+                        <div
+                            className="rgp-divider"
+                            style={{
+                                background: colors.accent,
+                            }}
+                        ></div>
+                    )}
                     <div
                         className="rgp-display-result-container"
                         style={{ maxHeight: dimension.height }}

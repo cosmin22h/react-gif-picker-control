@@ -9,12 +9,14 @@ interface ISearchBar {
     term: string;
     onChange: (newTerm: string) => void;
     onClear: () => void;
+    autoFocus: boolean;
 }
 
 export const SearchBar: FunctionComponent<ISearchBar> = ({
     term,
     onChange,
     onClear,
+    autoFocus,
 }) => {
     const { colors } = useContext(GifPickerContext);
 
@@ -32,6 +34,7 @@ export const SearchBar: FunctionComponent<ISearchBar> = ({
                 onChange={handleOnChangeInput}
                 placeholder="Search GIF"
                 style={{ color: colors.text }}
+                autoFocus={autoFocus}
             />
             {term.length > 0 ? (
                 <CloseIcon color={colors.accent} onClick={onClear} />

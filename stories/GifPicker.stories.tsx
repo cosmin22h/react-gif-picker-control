@@ -61,7 +61,7 @@ export const HideCategories: Story = {
         <GifPicker
             tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
             onClick={handleSelectedGif}
-            containerDimensions={{ width: 700, height: 450 }}
+            containerDimensions={{ width: 350, height: 450 }}
             hideCategories={true}
         />
     ),

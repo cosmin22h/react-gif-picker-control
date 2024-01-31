@@ -6,7 +6,7 @@ import { Dimension } from "../models/Dimension";
 import { TenorService } from "../services/TenorService";
 
 export const gifPickerDefaultContext = {
-    tenorAPI: new TenorService(""),
+    tenorAPI: null,
     colors: new ColorPalette(),
     dimension: new Dimension(),
     searchLimit: 0,

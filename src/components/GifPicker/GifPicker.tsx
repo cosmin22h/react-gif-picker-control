@@ -123,6 +123,10 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     };
 
     const renderList = (): ReactElement => {
+        if (gifPickerContext.tenorAPI === null) {
+            return null;
+        }
+
         if (debouncedSearchTerm.trim().length === 0) {
             return (
                 !hideCategories && (

@@ -1,7 +1,7 @@
 import { Category } from "../models/Category";
 import { Gif } from "../models/Gif";
 
-const baseUrl = "https://g.tenor.com/v1";
+const baseUrl = "https://tenor.googleapis.com/v2";
 
 interface ITenorService {
     getCategories(): Promise<Category[]>;
@@ -80,7 +80,7 @@ export class TenorService implements ITenorService {
             })
             .then((data) =>
                 data.results.map((gif) => {
-                    const gifMedia = gif.media[0]["gif"];
+                    const gifMedia = gif.media_formats["gif"];
 
                     return new Gif(
                         gif.id,

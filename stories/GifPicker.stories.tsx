@@ -20,8 +20,11 @@ const handleSelectedGif = (selectedGif: Gif) => {
 export const Dev: Story = {
     render: () => (
         <GifPicker
-            tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
+            tenorApiKey={
+                process.env.REACT_APP_TENOR_API_V2_KEY_FOR_DEV as string
+            }
             onClick={handleSelectedGif}
+            searchLimit={10}
         />
     ),
 };
@@ -29,7 +32,9 @@ export const Dev: Story = {
 export const SmallDimension: Story = {
     render: () => (
         <GifPicker
-            tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
+            tenorApiKey={
+                process.env.REACT_APP_TENOR_API_V2_KEY_FOR_DEV as string
+            }
             onClick={handleSelectedGif}
             containerDimensions={{ width: 10, height: 250 }}
         />
@@ -39,7 +44,9 @@ export const SmallDimension: Story = {
 export const MidDimension: Story = {
     render: () => (
         <GifPicker
-            tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
+            tenorApiKey={
+                process.env.REACT_APP_TENOR_API_V2_KEY_FOR_DEV as string
+            }
             onClick={handleSelectedGif}
             containerDimensions={{ width: 450, height: 450 }}
         />
@@ -49,7 +56,9 @@ export const MidDimension: Story = {
 export const BigDimension: Story = {
     render: () => (
         <GifPicker
-            tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
+            tenorApiKey={
+                process.env.REACT_APP_TENOR_API_V2_KEY_FOR_DEV as string
+            }
             onClick={handleSelectedGif}
             containerDimensions={{ width: 700, height: 450 }}
         />
@@ -59,7 +68,9 @@ export const BigDimension: Story = {
 export const HideCategories: Story = {
     render: () => (
         <GifPicker
-            tenorApiKey={process.env.REACT_APP_TENOR_API_KEY_FOR_DEV as string}
+            tenorApiKey={
+                process.env.REACT_APP_TENOR_API_V2_KEY_FOR_DEV as string
+            }
             onClick={handleSelectedGif}
             containerDimensions={{ width: 350, height: 450 }}
             hideCategories={true}

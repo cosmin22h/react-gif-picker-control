@@ -39,7 +39,7 @@ export const NoResults: FunctionComponent<INoResults> = ({ onSelectTag }) => {
         let widthMedia = 300;
 
         if (width < 350) {
-            widthMedia = 200;
+            widthMedia = 130;
         } else if (width < 400) {
             widthMedia = 250;
         }

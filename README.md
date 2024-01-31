@@ -58,10 +58,10 @@ const App = () {
 
 ### Styling
 
-| Property            | Type           | Default value                                                                    | Description                                        |
-| ------------------- | -------------- | -------------------------------------------------------------------------------- | -------------------------------------------------- |
-| colors              | `ColorPalette` | `{ primary: '#424242', accent: '#FFA25F', background: '#676767', text: '#FFF' }` | Customize the color palette of the GIF picker      |
-| containerDimensions | `Dimension`    | `{ width: 350, height: 450 }`                                                    | Set custom dimensions for the GIF picker container |
+| Property            | Type           | Default value                                                                       | Description                                        |
+| ------------------- | -------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------- |
+| colors              | `ColorPalette` | `js { primary: '#424242', accent: '#FFA25F', background: '#676767', text: '#FFF' }` | Customize the color palette of the GIF picker      |
+| containerDimensions | `Dimension`    | `js { width: 350, height: 450 }`                                                    | Set custom dimensions for the GIF picker container |
 
 ### Layouts
 
@@ -72,12 +72,12 @@ const App = () {
 
 ### Gif
 
-| Property    | Type     | Description                                                                      |
-| ----------- | -------- | -------------------------------------------------------------------------------- |
-| id          | `string` | Tenor reulst ID                                                                  |
-| description | `string` | A string containing a brief description or caption associated with the GIF       |
-| urlPreview  | `string` | A string representing the URL of a preview image or thumbnail for the GIF        |
-| urlMedia    | `string` | A string representing the URL of the actual GIF media file                       |
-| width       | `number` | A number indicating the width of the GIF in pixels                               |
-| height      | `number` | A number indicating the height of the GIF in pixels                              |
-| createdAt   | `Date`   | A Date object indicating the timestamp or date when the GIF was created or added |
+| Property    | Type     | Description                                 |
+| ----------- | -------- | ------------------------------------------- |
+| id          | `string` | Tenor reulst ID                             |
+| description | `string` | A brief description associated with the GIF |
+| urlPreview  | `string` | The URL of a thumbnail for the GIF          |
+| urlMedia    | `string` | The URL of the actual GIF media file        |
+| width       | `number` | The width of the GIF in pixels              |
+| height      | `number` | The height of the GIF in pixels             |
+| createdAt   | `Date`   | The date when the GIF was created or added  |

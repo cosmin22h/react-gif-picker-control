@@ -25,6 +25,7 @@ export const Dev: Story = {
             }
             onGifClick={handleSelectedGif}
             searchLimit={20}
+            containerDimensions={{ width: 350, height: 600 }}
         />
     ),
 };

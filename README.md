@@ -2,7 +2,7 @@
 
 ![npm](https://img.shields.io/npm/v/react-gif-picker-control)
 
-![demo](./demo-gif-picker-control.gif)
+![demo](./doc/demo-gif-picker-control.gif)
 
 A React component that offers a GIF picker control with a GIF search engine powered by [Tenor API V2](https://developers.google.com/tenor).
 
@@ -81,3 +81,13 @@ const App = () {
 | width       | `number` | The width of the GIF in pixels              |
 | height      | `number` | The height of the GIF in pixels             |
 | createdAt   | `Date`   | The date when the GIF was created or added  |
+
+## Other screens
+
+### Error
+
+![error](./doc/error.png)
+
+### No results
+
+[no-results](./doc/no_results.png)

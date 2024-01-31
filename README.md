@@ -8,7 +8,7 @@ A React component that offers a GIF picker control with a GIF search engine powe
 
 ## Prerequirement
 
-You need to provide a Tenor API V2 key in order to use this component. [This](https://developers.google.com/tenor) is where you can obtain the key.
+You need to provide a Tenor API V2 key in order to use this component. You can obtain a key from [here](https://developers.google.com/tenor).
 
 ## Installation
 

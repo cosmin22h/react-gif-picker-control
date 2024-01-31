@@ -1,7 +1,6 @@
-[![npm](https://img.shields.io/npm/v/react-gif-picker-control)][npm]
-[![npm bundle size](https://img.shields.io/bundlephobia/min/react-gif-picker-control)](https://bundlephobia.com/react-gif-picker-control)
-
 # Gif Picker React Control
+
+![npm](https://img.shields.io/npm/v/react-gif-picker-control)
 
 ![demo](./demo-gif-picker-control.gif)
 

@@ -6,6 +6,8 @@
     align-items: center;
     text-align: center;
     gap: 1rem;
+    width: 100%;
+    height: 100%;
 }
 
 .rgp-error-layout .rgp-error-header {
@@ -15,5 +17,5 @@
 }
 
 .rgp-error-layout .rgp-error-media-content {
-    width: 200px;
+    max-width: 100%;
 }

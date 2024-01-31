@@ -15,7 +15,6 @@
 }
 
 .rgp-search-results .rgp-footer {
-    margin-top: 1rem;
     grid-column-start: 1;
     grid-column: 1 / var(--grid-column-footer);
     display: flex;

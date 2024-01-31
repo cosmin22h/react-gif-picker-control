@@ -25,7 +25,7 @@ yarn add gif-picker-react
 ```js
 import { GifPicker } from "react-gif-picker-control";
 
-const App = () {
+const App = () => {
     return (
         <div>
             <GifPicker
@@ -34,7 +34,7 @@ const App = () {
             />
         </div>
     );
-}
+};
 ```
 
 ## Props

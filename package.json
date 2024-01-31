@@ -1,6 +1,6 @@
 {
     "name": "react-gif-picker-control",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "A GIF picker control built with and for React",
     "keywords": [
         "gif",

@@ -1,7 +1,5 @@
 # Gif Picker React Control
 
-![npm](https://img.shields.io/npm/v/react-gif-picker-control)
-
 ![demo](./doc/demo-gif-picker-control.gif)
 
 A React component that offers a GIF picker control with a GIF search engine powered by [Tenor API V2](https://developers.google.com/tenor).

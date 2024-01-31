@@ -28,35 +28,35 @@ import { ErrorLayout } from "./components/core/ErrorLayout";
 
 // constants
 const defaultSearchLimit = 50;
-const defaultGifErrorUrl =
+const defaultImageErrorUrl =
     "https://media.tenor.com/OxvVRFnPZO8AAAAC/error-the-simpsons.gif";
-const defaultNoResultsGifUrl =
+const defaultImageNoResultsUrl =
     "https://media.tenor.com/jJHoqBHOqVkAAAAC/animated-cartoon.gif";
 
 interface IGifPicker {
     tenorApiKey: string;
-    onClick: (gif: Gif) => void;
+    onGifClick: (gif: Gif) => void;
     colors?: ColorPalette;
     containerDimensions?: Dimension;
     searchLimit?: number;
-    gifErrorUrl?: string;
-    gifNoResultsUrl?: string;
+    imageErrorUrl?: string;
+    imageNoResultsUrl?: string;
     hideCategories?: boolean;
     autoFocus?: boolean;
 }
 
 const GifPicker: FunctionComponent<IGifPicker> = ({
     tenorApiKey,
-    onClick,
+    onGifClick,
     colors = new ColorPalette(),
     containerDimensions: dimension = new Dimension(),
     searchLimit = defaultSearchLimit,
-    gifErrorUrl = defaultGifErrorUrl,
-    gifNoResultsUrl = defaultNoResultsGifUrl,
+    imageErrorUrl = defaultImageErrorUrl,
+    imageNoResultsUrl = defaultImageNoResultsUrl,
     hideCategories = false,
     autoFocus = true,
 }) => {
-    if (!tenorApiKey || !onClick) {
+    if (!tenorApiKey || !onGifClick) {
         return (
             <div
                 style={{
@@ -88,8 +88,8 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
             colors,
             dimension: dimension,
             searchLimit,
-            gifErrorUrl,
-            gifNoResultsUrl,
+            imageErrorUrl,
+            imageNoResultsUrl,
         });
     }, []);
 
@@ -119,7 +119,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
 
     const handleOnSelectGif = (selectedGif: Gif) => {
         handleOnClearSearchTerm();
-        onClick(selectedGif);
+        onGifClick(selectedGif);
     };
 
     const renderList = (): ReactElement => {

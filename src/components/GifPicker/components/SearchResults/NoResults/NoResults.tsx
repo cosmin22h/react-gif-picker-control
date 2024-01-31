@@ -23,7 +23,7 @@ interface INoResults {
 export const NoResults: FunctionComponent<INoResults> = ({ onSelectTag }) => {
     const noResultsRef = useRef<HTMLDivElement>(null);
 
-    const { tenorAPI, gifNoResultsUrl, colors, dimension } =
+    const { tenorAPI, imageNoResultsUrl, colors, dimension } =
         useContext(GifPickerContext);
 
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -94,7 +94,7 @@ export const NoResults: FunctionComponent<INoResults> = ({ onSelectTag }) => {
             </h2>
             <img
                 className="rgp-media-content"
-                src={gifNoResultsUrl}
+                src={imageNoResultsUrl}
                 alt="No results"
                 title="Nothing happens"
                 loading="lazy"

@@ -1,8 +1,17 @@
 {
     "name": "react-gif-picker-control",
     "version": "0.0.1",
-    "description": "TO BE ADDED! STILL IN DEVELOPMENT!",
-    "keywords": [],
+    "description": "A GIF picker control built with and for React",
+    "keywords": [
+        "gif",
+        "gif-picker",
+        "gif-search",
+        "tenor",
+        "tenor api v2",
+        "react",
+        "react-component",
+        "react-control"
+    ],
     "license": "MIT",
     "author": "Cosmin Handarc (https://github.com/cosmin22h)",
     "homepage": "https://github.com/cosmin22h/react-gif-picker-control#readme",
@@ -46,10 +55,12 @@
         "rollup-plugin-postcss": "^4.0.2",
         "rollup-plugin-typescript2": "^0.36.0",
         "storybook": "^7.6.10",
-        "typescript": "^5.2.2"
-    },
-    "peerDependencies": {
+        "typescript": "^5.2.2",
         "react": "^18.2.0",
         "react-dom": "^18.2.0"
+    },
+    "peerDependencies": {
+        "react": "^17.0.0 || ^18.0.0",
+        "react-dom": " ^17.0.0 || ^18.0.0"
     }
 }

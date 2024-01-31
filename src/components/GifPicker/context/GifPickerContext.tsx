@@ -10,8 +10,8 @@ export const gifPickerDefaultContext = {
     colors: new ColorPalette(),
     dimension: new Dimension(),
     searchLimit: 0,
-    gifErrorUrl: "",
-    gifNoResultsUrl: "",
+    imageErrorUrl: "",
+    imageNoResultsUrl: "",
 };
 
 export interface IGifPickerContext {
@@ -19,8 +19,8 @@ export interface IGifPickerContext {
     colors: ColorPalette;
     dimension: Dimension;
     searchLimit: number;
-    gifErrorUrl: string;
-    gifNoResultsUrl: string;
+    imageErrorUrl: string;
+    imageNoResultsUrl: string;
 }
 
 export const GifPickerContext = createContext<IGifPickerContext>(

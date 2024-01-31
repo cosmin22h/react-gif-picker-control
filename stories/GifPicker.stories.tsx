@@ -23,8 +23,8 @@ export const Dev: Story = {
             tenorApiKey={
                 process.env.REACT_APP_TENOR_API_V2_KEY_FOR_DEV as string
             }
-            onClick={handleSelectedGif}
-            searchLimit={10}
+            onGifClick={handleSelectedGif}
+            searchLimit={20}
         />
     ),
 };
@@ -35,7 +35,7 @@ export const SmallDimension: Story = {
             tenorApiKey={
                 process.env.REACT_APP_TENOR_API_V2_KEY_FOR_DEV as string
             }
-            onClick={handleSelectedGif}
+            onGifClick={handleSelectedGif}
             containerDimensions={{ width: 10, height: 250 }}
         />
     ),
@@ -47,7 +47,7 @@ export const MidDimension: Story = {
             tenorApiKey={
                 process.env.REACT_APP_TENOR_API_V2_KEY_FOR_DEV as string
             }
-            onClick={handleSelectedGif}
+            onGifClick={handleSelectedGif}
             containerDimensions={{ width: 450, height: 450 }}
         />
     ),
@@ -59,7 +59,7 @@ export const BigDimension: Story = {
             tenorApiKey={
                 process.env.REACT_APP_TENOR_API_V2_KEY_FOR_DEV as string
             }
-            onClick={handleSelectedGif}
+            onGifClick={handleSelectedGif}
             containerDimensions={{ width: 700, height: 450 }}
         />
     ),
@@ -71,7 +71,7 @@ export const HideCategories: Story = {
             tenorApiKey={
                 process.env.REACT_APP_TENOR_API_V2_KEY_FOR_DEV as string
             }
-            onClick={handleSelectedGif}
+            onGifClick={handleSelectedGif}
             containerDimensions={{ width: 350, height: 450 }}
             hideCategories={true}
         />

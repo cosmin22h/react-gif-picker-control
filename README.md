@@ -23,7 +23,7 @@ yarn add gif-picker-react
 ## Usage
 
 ```js
-import GifPicker from "react-gif-picker-control";
+import { GifPicker } from "react-gif-picker-control";
 
 const App = () {
     return (

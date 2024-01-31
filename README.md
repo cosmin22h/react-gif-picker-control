@@ -50,11 +50,11 @@ const App = () {
 
 ### Optional
 
-| Property       | Type      | Default value | Description                                                 |
-| -------------- | --------- | ------------- | ----------------------------------------------------------- |
-| searchLimit    | `number`  | `50`          | Define the limit for search results                         |
-| hideCategories | `boolean` | `false`       | Hide or show GIF categories in the picker                   |
-| autoFocus      | `boolean` | `true`        | Auto-focus on the GIF picker for a seamless user experience |
+| Property       | Type      | Default value | Description                               |
+| -------------- | --------- | ------------- | ----------------------------------------- |
+| searchLimit    | `number`  | `50`          | Define the limit for search results       |
+| hideCategories | `boolean` | `false`       | Hide or show GIF categories in the picker |
+| autoFocus      | `boolean` | `true`        | Auto-focus on the GIF search input        |
 
 ### Styling
 
@@ -63,7 +63,7 @@ const App = () {
 | colors              | `ColorPalette` | `{ primary: '#424242', accent: '#FFA25F', background: '#676767', text: '#FFF' }` | Customize the color palette of the GIF picker      |
 | containerDimensions | `Dimension`    | `{ width: 350, height: 450 }`                                                    | Set custom dimensions for the GIF picker container |
 
-### Layouts
+### Images
 
 | Property          | Type     | Default value                                                                   | Description                               |
 | ----------------- | -------- | ------------------------------------------------------------------------------- | ----------------------------------------- |
@@ -74,7 +74,7 @@ const App = () {
 
 | Property    | Type     | Description                                 |
 | ----------- | -------- | ------------------------------------------- |
-| id          | `string` | Tenor reulst ID                             |
+| id          | `string` | Tenor result ID                             |
 | description | `string` | A brief description associated with the GIF |
 | urlPreview  | `string` | The URL of a thumbnail for the GIF          |
 | urlMedia    | `string` | The URL of the actual GIF media file        |

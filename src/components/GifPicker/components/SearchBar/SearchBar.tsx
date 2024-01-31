@@ -32,7 +32,7 @@ export const SearchBar: FunctionComponent<ISearchBar> = ({
                 className="rgp-search-input"
                 value={term}
                 onChange={handleOnChangeInput}
-                placeholder="Search GIF"
+                placeholder="Search Tenor"
                 style={{ color: colors.text }}
                 autoFocus={autoFocus}
             />

@@ -7,8 +7,10 @@
         "gif-picker",
         "gif-search",
         "tenor",
+        "tenor api v2",
         "react",
-        "react-component"
+        "react-component",
+        "react-control"
     ],
     "license": "MIT",
     "author": "Cosmin Handarc (https://github.com/cosmin22h)",

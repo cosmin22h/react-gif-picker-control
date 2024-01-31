@@ -27,12 +27,12 @@ yarn add gif-picker-react
 ```js
 import GifPicker from "react-gif-picker-control";
 
-function App() {
+const App = () {
     return (
         <div>
             <GifPicker
                 tenorApiKey={"YOUR_API_KEY"}
-                onClick={"YOUR_FUNCTION_TO_HANDLE_THE_GIF_SELECTION"}
+                onGifClick={"YOUR_FUNCTION_TO_HANDLE_THE_GIF_SELECTION"}
             />
         </div>
     );
@@ -40,3 +40,10 @@ function App() {
 ```
 
 ## Props
+
+Required:
+
+| Prop        | Type     | Description                                                                                                   |
+| ----------- | -------- | ------------------------------------------------------------------------------------------------------------- |
+| tenorApiKey | string   | Your [Tenor API key](https://developers.google.com/tenor) for powering the GIF search engine                  |
+| onGifClick  | function | Callback function triggered when a GIF is clicked. The function has one parameter which is [Gif](#gif) object |

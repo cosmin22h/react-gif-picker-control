@@ -35,7 +35,7 @@ const defaultNoResultsGifUrl =
 
 interface IGifPicker {
     tenorApiKey: string;
-    onGifSelect: (gif: Gif) => void;
+    onGifClick: (gif: Gif) => void;
     colors?: ColorPalette;
     containerDimensions?: Dimension;
     searchLimit?: number;
@@ -47,7 +47,7 @@ interface IGifPicker {
 
 const GifPicker: FunctionComponent<IGifPicker> = ({
     tenorApiKey,
-    onGifSelect,
+    onGifClick,
     colors = new ColorPalette(),
     containerDimensions: dimension = new Dimension(),
     searchLimit = defaultSearchLimit,
@@ -56,7 +56,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     hideCategories = false,
     autoFocus = true,
 }) => {
-    if (!tenorApiKey || !onGifSelect) {
+    if (!tenorApiKey || !onGifClick) {
         return (
             <div
                 style={{
@@ -119,7 +119,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
 
     const handleOnSelectGif = (selectedGif: Gif) => {
         handleOnClearSearchTerm();
-        onGifSelect(selectedGif);
+        onGifClick(selectedGif);
     };
 
     const renderList = (): ReactElement => {

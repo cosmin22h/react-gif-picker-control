@@ -58,10 +58,10 @@ const App = () {
 
 ### Styling
 
-| Property            | Type           | Default value                                                                       | Description                                        |
-| ------------------- | -------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------- |
-| colors              | `ColorPalette` | `js { primary: '#424242', accent: '#FFA25F', background: '#676767', text: '#FFF' }` | Customize the color palette of the GIF picker      |
-| containerDimensions | `Dimension`    | `js { width: 350, height: 450 }`                                                    | Set custom dimensions for the GIF picker container |
+| Property            | Type           | Default value                                                                    | Description                                        |
+| ------------------- | -------------- | -------------------------------------------------------------------------------- | -------------------------------------------------- |
+| colors              | `ColorPalette` | `{ primary: '#424242', accent: '#FFA25F', background: '#676767', text: '#FFF' }` | Customize the color palette of the GIF picker      |
+| containerDimensions | `Dimension`    | `{ width: 350, height: 450 }`                                                    | Set custom dimensions for the GIF picker container |
 
 ### Layouts
 

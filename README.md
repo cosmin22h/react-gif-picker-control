@@ -90,4 +90,4 @@ const App = () {
 
 ### No results
 
-[no-results](./doc/no_results.png)
+![no-results](./doc/no_results.png)

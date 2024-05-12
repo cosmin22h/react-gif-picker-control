@@ -32,12 +32,15 @@ const defaultImageErrorUrl =
     "https://media.tenor.com/OxvVRFnPZO8AAAAC/error-the-simpsons.gif";
 const defaultImageNoResultsUrl =
     "https://media.tenor.com/jJHoqBHOqVkAAAAC/animated-cartoon.gif";
+const defaultWidth = 350;
+const defaultHeight = 450;
 
 interface IGifPicker {
     tenorApiKey: string;
     onGifClick: (gif: Gif) => void;
     colors?: ColorPalette;
-    containerDimensions?: Dimension;
+    width?: number;
+    height?: number;
     searchLimit?: number;
     imageErrorUrl?: string;
     imageNoResultsUrl?: string;
@@ -49,7 +52,8 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     tenorApiKey,
     onGifClick,
     colors = new ColorPalette(),
-    containerDimensions: dimension = new Dimension(),
+    width = defaultWidth,
+    height = defaultHeight,
     searchLimit = defaultSearchLimit,
     imageErrorUrl = defaultImageErrorUrl,
     imageNoResultsUrl = defaultImageNoResultsUrl,
@@ -68,6 +72,9 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
         );
     }
 
+    const containerW = width < 150 ? 150 : width > 500 ? 500 : width;
+    const containerH = height > 500 ? 500 : height;
+
     const [gifPickerContext, setGifPickerContext] = useState<IGifPickerContext>(
         gifPickerDefaultContext
     );
@@ -75,18 +82,10 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
     const [debouncedSearchTerm, setDobouncedSearchTerm] = useState<string>("");
 
     useEffect(() => {
-        if (dimension.width < 150) {
-            dimension.width = 150;
-        }
-
-        if (dimension.width > 500) {
-            dimension.width = 500;
-        }
-
         setGifPickerContext({
             tenorAPI: new TenorService(tenorApiKey),
             colors,
-            dimension: dimension,
+            dimension: new Dimension(containerW, containerH),
             searchLimit,
             imageErrorUrl,
             imageNoResultsUrl,
@@ -151,7 +150,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
                 style={{
                     background: colors.background,
                     color: colors.text,
-                    width: dimension.width,
+                    width: containerW,
                 }}
             >
                 <div className="rgp-gif-picker">
@@ -174,7 +173,7 @@ const GifPicker: FunctionComponent<IGifPicker> = ({
                     )}
                     <div
                         className="rgp-display-result-container"
-                        style={{ maxHeight: dimension.height }}
+                        style={{ maxHeight: containerH }}
                     >
                         {renderList()}
                     </div>

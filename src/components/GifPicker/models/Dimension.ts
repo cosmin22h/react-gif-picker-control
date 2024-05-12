@@ -2,8 +2,8 @@ export class Dimension {
     public width: number;
     public height: number;
 
-    constructor() {
-        this.width = 350;
-        this.height = 450;
+    constructor(width: number, height: number) {
+        this.width = width;
+        this.height = height;
     }
 }
